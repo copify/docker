@@ -62,6 +62,7 @@ RUN set -x \
 	&& rm "$PHP_FILENAME"* \
 	&& cd /usr/src/php \
 	&& ./configure \
+        --with-apxs2=/usr/bin/apxs \
 		--with-config-file-path="$PHP_INI_DIR" \
 		--with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
 		--disable-cgi \

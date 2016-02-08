@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     make \
     pkg-config \
     re2c \
+    vim \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 RUN mkdir -p $PHP_INI_DIR/conf.d
 RUN set -xe \

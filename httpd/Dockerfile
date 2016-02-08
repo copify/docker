@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
 	apache2-dev \
 	apache2-bin \
 	apache2.2-common \
+    vim \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 RUN rm -rf /var/www/html
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www/html

@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
     apache2-dev \
     apache2-bin \
     apache2.2-common \
+    vim \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 
 RUN rm -rf /var/www/html

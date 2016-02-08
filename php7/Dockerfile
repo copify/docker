@@ -9,28 +9,28 @@ ENV PHP_SHA256 556121271a34c442b48e3d7fa3d3bbb4413d91897abbb92aaeced4a7df5f2ab2
 ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
 
 RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	curl \
-	librecode0 \
-	libxml2 \
-	autoconf \
+    ca-certificates \
+    curl \
+    librecode0 \
+    libxml2 \
+    autoconf \
     zlib1g-dev \
-	file \
-	libcurl4-openssl-dev \
-	libreadline6-dev \
-	librecode-dev \
-	libssl-dev \
-	libicu-dev	\
-	libmcrypt-dev	\
-	libxml2-dev \
-	xz-utils \
-	g++ \
+    file \
+    libcurl4-openssl-dev \
+    libreadline6-dev \
+    librecode-dev \
+    libssl-dev \
+    libicu-dev	\
+    libmcrypt-dev	\
+    libxml2-dev \
+    xz-utils \
+    g++ \
     git-core \
-	gcc \
-	libc-dev \
-	make \
-	pkg-config \
-	re2c \
+    gcc \
+    libc-dev \
+    make \
+    pkg-config \
+    re2c \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 RUN mkdir -p $PHP_INI_DIR/conf.d
 RUN set -xe \
@@ -47,19 +47,19 @@ RUN set -x \
 	&& rm "$PHP_FILENAME"* \
 	&& cd /usr/src/php \
 	&& ./configure \
-		--with-config-file-path="$PHP_INI_DIR" \
-		--with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
-		--disable-cgi \
-		--enable-mysqlnd \
-		--enable-intl \
+        --with-config-file-path="$PHP_INI_DIR" \
+        --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
+        --disable-cgi \
+        --enable-mysqlnd \
+        --enable-intl \
         --enable-zip \
-		--enable-mbstring \
-		--with-curl \
-		--with-openssl \
-		--with-readline \
-		--with-mcrypt \
-		--with-recode \
-		--with-zlib \
+        --enable-mbstring \
+        --with-curl \
+        --with-openssl \
+        --with-readline \
+        --with-mcrypt \
+        --with-recode \
+        --with-zlib \
 	&& make -j"$(nproc)" \
 	&& make install \
 	&& { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \

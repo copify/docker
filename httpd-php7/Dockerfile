@@ -10,31 +10,31 @@ ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
 ENV WWW_ROOT /var/www/html
 
 RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	curl \
-	librecode0 \
-	libxml2 \
-	autoconf \
+    ca-certificates \
+    curl \
+    librecode0 \
+    libxml2 \
+    autoconf \
     zlib1g-dev \
-	file \
-	libcurl4-openssl-dev \
-	libreadline6-dev \
-	librecode-dev \
-	libssl-dev \
-	libicu-dev	\
-	libmcrypt-dev	\
-	libxml2-dev \
-	xz-utils \
-	g++ \
+    file \
+    libcurl4-openssl-dev \
+    libreadline6-dev \
+    librecode-dev \
+    libssl-dev \
+    libicu-dev	\
+    libmcrypt-dev	\
+    libxml2-dev \
+    xz-utils \
+    g++ \
     git-core \
-	gcc \
-	libc-dev \
-	make \
-	pkg-config \
-	re2c \
+    gcc \
+    libc-dev \
+    make \
+    pkg-config \
+    re2c \
     apache2-dev \
-	apache2-bin \
-	apache2.2-common \
+    apache2-bin \
+    apache2.2-common \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 
 RUN rm -rf /var/www/html
@@ -63,19 +63,19 @@ RUN set -x \
 	&& cd /usr/src/php \
 	&& ./configure \
         --with-apxs2=/usr/bin/apxs \
-		--with-config-file-path="$PHP_INI_DIR" \
-		--with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
-		--disable-cgi \
-		--enable-mysqlnd \
-		--enable-intl \
+        --with-config-file-path="$PHP_INI_DIR" \
+        --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
+        --disable-cgi \
+        --enable-mysqlnd \
+        --enable-intl \
         --enable-zip \
-		--enable-mbstring \
-		--with-curl \
-		--with-openssl \
-		--with-readline \
-		--with-mcrypt \
-		--with-recode \
-		--with-zlib \
+        --enable-mbstring \
+        --with-curl \
+        --with-openssl \
+        --with-readline \
+        --with-mcrypt \
+        --with-recode \
+        --with-zlib \
 	&& make -j"$(nproc)" \
 	&& make install \
 	&& { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \

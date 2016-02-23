@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev	\
     libmcrypt-dev	\
     libxml2-dev \
+    locales \
     xz-utils \
     g++ \
     git-core \
@@ -35,6 +36,7 @@ RUN apt-get update && apt-get install -y \
     apache2-dev \
     apache2-bin \
     apache2.2-common \
+    mysql-client \
     vim \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 
@@ -68,6 +70,7 @@ RUN set -x \
         --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
         --disable-cgi \
         --enable-mysqlnd \
+        --with-pdo-mysql \
         --enable-intl \
         --enable-zip \
         --enable-mbstring \

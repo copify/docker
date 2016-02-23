@@ -31,8 +31,10 @@ RUN apt-get update && apt-get install -y \
     make \
     pkg-config \
     re2c \
+    mysql-client \
     vim \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
+    
 RUN mkdir -p $PHP_INI_DIR/conf.d
 RUN set -xe \
 	&& for key in $GPG_KEYS; do \
@@ -52,6 +54,7 @@ RUN set -x \
         --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
         --disable-cgi \
         --enable-mysqlnd \
+        --with-pdo-mysql \
         --enable-intl \
         --enable-zip \
         --enable-mbstring \

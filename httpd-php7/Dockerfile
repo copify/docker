@@ -2,11 +2,12 @@ FROM debian:jessie
 
 MAINTAINER Rob McVey https://github.com/robmcvey
 
-ENV PHP_VERSION 7.0.2
-ENV PHP_FILENAME php-7.0.2.tar.xz
+ENV PHP_VERSION 7.1.1
+ENV PHP_FILENAME php-7.1.1.tar.xz
 ENV PHP_INI_DIR /usr/local/etc/php
-ENV PHP_SHA256 556121271a34c442b48e3d7fa3d3bbb4413d91897abbb92aaeced4a7df5f2ab2
-ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
+ENV PHP_SHA256 b3565b0c1441064eba204821608df1ec7367abff881286898d900c2c2a5ffe70
+ENV GPG_KEYS A917B1ECDA84AEC2B568FED6F50ABC807BD5DCD0 528995BFEDFBA7191D46839EF9BA0ADA31CBD89E
+ENV REDIS_FILENAME redis-3.1.0.tar.gz
 ENV WWW_ROOT /var/www/html
 
 RUN apt-get update && apt-get install -y \
@@ -87,6 +88,17 @@ RUN set -x \
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+
+RUN curl -fSL "https://codeload.github.com/phpredis/phpredis/tar.gz/3.1.0" -o "$REDIS_FILENAME" \
+    && mkdir redis \
+    && tar -xvzf "$REDIS_FILENAME" -C redis \
+    && rm "$REDIS_FILENAME" \
+    && cd redis/phpredis-3.1.0 \
+    && phpize \
+    && ./configure \
+    && make && make install
+
+RUN echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 COPY apache2-foreground /usr/local/bin/
 WORKDIR $WWW_ROOT

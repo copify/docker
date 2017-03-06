@@ -74,6 +74,7 @@ RUN set -x \
         --with-pdo-mysql \
         --enable-intl \
         --enable-zip \
+        --enable-libxml \
         --enable-soap \
         --enable-mbstring \
         --with-curl \

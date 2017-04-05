@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
     libicu-dev	\
     libc-dev \
     libmcrypt-dev	\
+    libserf-1-1 \
+    libsvn1 \
     libxml2-dev \
     locales \
     make \
@@ -42,6 +44,7 @@ RUN apt-get update && apt-get install -y \
     openssh-client \
     pkg-config \
     re2c \
+    subversion \
     vim \
     xz-utils \
     zlib1g-dev \

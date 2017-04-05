@@ -11,34 +11,40 @@ ENV REDIS_FILENAME redis-3.1.0.tar.gz
 ENV WWW_ROOT /var/www/html
 
 RUN apt-get update && apt-get install -y \
+    apache2-dev \
+    apache2-bin \
+    apache2.2-common \
+    autoconf \
     ca-certificates \
     curl \
+    bzip2 \
+    file \
+    g++ \
+    gettext \
+    git-core \
+    gcc \
     librecode0 \
     libxml2 \
-    autoconf \
-    zlib1g-dev \
-    file \
+    libbz2-dev \
     libcurl4-openssl-dev \
     libreadline6-dev \
     librecode-dev \
     libssl-dev \
     libicu-dev	\
+    libc-dev \
     libmcrypt-dev	\
     libxml2-dev \
     locales \
-    xz-utils \
-    g++ \
-    git-core \
-    gcc \
-    libc-dev \
     make \
+    mysql-client \
+    ntp \
+    ntpdate \
+    openssh-client \
     pkg-config \
     re2c \
-    apache2-dev \
-    apache2-bin \
-    apache2.2-common \
-    mysql-client \
     vim \
+    xz-utils \
+    zlib1g-dev \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 
 RUN rm -rf /var/www/html
@@ -74,6 +80,8 @@ RUN set -x \
         --with-pdo-mysql \
         --enable-intl \
         --enable-zip \
+        --with-gettext \
+        --with-bz2 \
         --enable-libxml \
         --enable-soap \
         --enable-mbstring \
